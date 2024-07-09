@@ -19,7 +19,7 @@ RUN \
     --mount=type=cache,target=/var/lib/apt,sharing=locked \
     apt-get update && \
     apt-get install -y \
-    libspatialindex-dev unar bc python3-pip wget libgdal-dev gdal-bin
+    libspatialindex-dev unar bc python3-pip wget libgdal-dev gdal-bin mc nano
 
 # Python dependencies
 ADD ./requirements.txt .
