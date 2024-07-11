@@ -1,30 +1,28 @@
 #!/usr/bin/env bash
 
 
-set -eu
+set -eux
 
 WORKDIR='/code/data'
 
-file1='SRTM_NE_250m_TIF'
-file2='SRTM_SE_250m_TIF'
-file3='SRTM_W_250m_TIF'
-
 cd "$WORKDIR"
 
-if [ -f "$file1.rar" ] || [ -f "$file2.rar" ] || [ -f "$file3.rar" ] ;then
-    echo "[*] SRTM data files (RAR) have already been downloaded"
-    exit 0
-fi
-
-if [ -f "$file1.tif" ] || [ -f "$file2.tif" ] || [ -f "$file3.tif" ] ;then
+if [ -f "/code/data/SRTM_NE_250m_TIF/SRTM_NE_250m.tif" ] || [ -f "/code/data/SRTM_SE_250m_TIF/SRTM_SE_250m.tif" ] || [ -f "/code/data/SRTM_W_250m_TIF/SRTM_W_250m.tif" ];then
     echo "[*] SRTM data files (TIF) have already been downloaded and extracted"
     exit 0
 fi 
 
+if test -f "/code/data/SRTM_NE_250m_TIF.rar" || test -f "/code/data/SRTM_SE_250m_TIF.rar"  || [ -f "/code/data/SRTM_W_250m_TIF.rar"];then
+    echo "[*] SRTM data files (RAR) have already been downloaded"
+    exit 0
+fi
+
+
 echo '[+] Downloading SRTM data files'
-wget "https://srtm.csi.cgiar.org/wp-content/uploads/files/250m/$file1.rar" && unar -f "$file1.rar" && rm -rf "$file1.rar"
-wget "https://srtm.csi.cgiar.org/wp-content/uploads/files/250m/$file2.rar" && unar -f "$file2.rar" && rm -rf "$file2.rar"
-wget "https://srtm.csi.cgiar.org/wp-content/uploads/files/250m/$file3.rar" && unar -f "$file3.rar" && rm -rf "$file3.rar"
+exit 1
+wget "https://srtm.csi.cgiar.org/wp-content/uploads/files/250m/SRTM_NE_250m_TIF.rar" && unar -f "SRTM_NE_250m_TIF.rar" && rm -rf "SRTM_NE_250m_TIF.rar"
+wget "https://srtm.csi.cgiar.org/wp-content/uploads/files/250m/SRTM_SE_250m_TIF.rar" && unar -f "SRTM_SE_250m_TIF.rar" && rm -rf "SRTM_SE_250m_TIF.rar"
+wget "https://srtm.csi.cgiar.org/wp-content/uploads/files/250m/SRTM_W_250m_TIF.rar" && unar -f "SRTM_W_250m_TIF.rar" && rm -rf "SRTM_W_250m_TIF.rar"
 
 echo "[+] Done"
 
