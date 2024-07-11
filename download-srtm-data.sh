@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -eu
 set -x
-
 WORKDIR='/code/data'
 
 file1='SRTM_NE_250m_TIF'
@@ -10,11 +9,11 @@ file3='SRTM_W_250m_TIF'
 
 cd "$WORKDIR"
 
-if [ -f "$file1.rar" ] || [ -f "$file2.rar" ] || [ -f "$file3.rar" ];then
+if find /code/data/ -name "*.rar" ;then
     echo "[*] tile data files (RAR) have already been downloaded, exit"
     exit 0
 
-elif [ -f "$file1.tif" ] || [ -f "$file2.tif" ] || [ -f "$file3.tif" ];then
+elif find /code/data/ -name "*.tif" ;then
     echo "[*] tile data files (TIF) have already been downloaded and extracted, exit"
     exit 0
 else
